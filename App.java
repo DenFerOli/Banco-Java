@@ -1,6 +1,7 @@
 package com.mycompany.gerenciabanco;
 import java.util.Scanner;
 
+
 public class GerenciaBanco {
 
     public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class GerenciaBanco {
         double saldo = conta.getSaldo();
         
         do {
-            System.out.println("Bem vindo ao Banco Ouro\n\n" + conta.getTitular() + "\t\t\tCPF: " + conta.getCpf() + "\n\n1-Consultar Saldo\n2-Depositar\n3-Sacar\n4-Sair\n\n");
+            System.out.println("Bem-vindo ao Banco Ouro\n\n" + conta.getTitular() + "\t\t\tCPF: " + conta.getCpf() + "\n\n1-Consultar Saldo\n2-Depositar\n3-Sacar\n4-Sair\n\n");
             opcao = scanner.nextInt();
             switch(opcao) {
                 case 1:
@@ -30,21 +31,28 @@ public class GerenciaBanco {
                 case 3:
                     System.out.println("\nQual o valor que você deseja sacar?\n");
                     int valorSaque = scanner.nextInt();
-                    conta.sacar(valorSaque);
-                    System.out.println("Saque efetuado com sucesso\n\n");
-                    System.out.println("\nSeu Saldo atual é R$" + conta.getSaldo() + "\n\n");
+                    
+                    if (valorSaque <= conta.getSaldo()) {
+                        conta.sacar(valorSaque);
+                        System.out.println("Saque efetuado com sucesso\n\n");
+                        System.out.println("\nSeu Saldo atual é R$" + conta.getSaldo() + "\n\n");
+                    } else {
+                        conta.sacar(valorSaque);
+                    }
+
                     System.out.println("-----------------------------------------------------");
                 default:
-                    System.out.println("Obrigado por usar o Banco");
                     break;
             }
             
         } while (opcao != 4);
-        
+        System.out.println("Obrigado por usar o Banco Ouro! \nVolte sempre!");
         
         scanner.close();
     }
 }
+
+
 
 class ContaBancaria {
     private String titular;
