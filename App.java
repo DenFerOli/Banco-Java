@@ -1,5 +1,5 @@
 package com.mycompany.gerenciabanco;
-import java.util.Scanner;
+import java.util.Scanner;                           // Esse trecho do código permite que o código receba entrada de dados
 
 
 public class GerenciaBanco {
@@ -7,14 +7,21 @@ public class GerenciaBanco {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
+        // Esse trecho cria um novo objeto da classe conta bancaria.
         ContaBancaria conta = new ContaBancaria("Denis Fernando", "123.321.456-8", 2000);
         
         int opcao;
         double saldo = conta.getSaldo();
+
+        //  LAÇO DO...WHILE
+        //  Enquanto o usuário não digitar 4 o sistema continuará funcionando.
         
         do {
             System.out.println("Bem-vindo ao Banco Ouro\n\n" + conta.getTitular() + "\t\t\tCPF: " + conta.getCpf() + "\n\n1-Consultar Saldo\n2-Depositar\n3-Sacar\n4-Sair\n\n");
             opcao = scanner.nextInt();
+        
+        //  O controle de fluxo switch é o menu principal de acordo com cada opção digitada uma ação será tomada.
+
             switch(opcao) {
                 case 1:
                     System.out.println("\nSeu Saldo atual é R$" + conta.getSaldo() + "\n\n");
@@ -52,7 +59,7 @@ public class GerenciaBanco {
     }
 }
 
-
+// CLASSE CONTA BANCARIA
 
 class ContaBancaria {
     private String titular;
@@ -64,6 +71,8 @@ class ContaBancaria {
         this.cpf = cpf;
         this.saldo = saldo;
     }
+
+// MÉTODOS
     
     public void depositar (int valor) {
         saldo += valor;
@@ -85,7 +94,7 @@ class ContaBancaria {
         return titular;
     }
     
-        public String getCpf () {
+    public String getCpf () {
         return cpf;
     }
      
