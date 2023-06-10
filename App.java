@@ -1,27 +1,34 @@
 package com.mycompany.gerenciabanco;
-import java.util.Scanner;                           // Esse trecho do código permite que o código receba entrada de dados
-
+import java.util.Scanner; // Esse trecho permite que o código receba entrada de dados
 
 public class GerenciaBanco {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        // Esse trecho cria um novo objeto da classe conta bancaria.
-        ContaBancaria conta = new ContaBancaria("Denis Fernando", "123.321.456-8", 2000);
-        
+        String nome, sobrenome, cpf;
         int opcao;
+        
+        System.out.println("Bem vindo ao Banco Ouro!\nDigite seu nome:");
+        nome = scanner.next();
+        System.out.println("\nDigite seu sobrenome:");
+        sobrenome = scanner.next();
+        System.out.println("\nDigite seu CPF:");
+        cpf = scanner.next();
+        
+        // Esse trecho de código cria um novo objeto da classe conta bancária
+        
+        ContaBancaria conta = new ContaBancaria(nome, sobrenome, cpf, 2000);
         double saldo = conta.getSaldo();
-
-        //  LAÇO DO...WHILE
-        //  Enquanto o usuário não digitar 4 o sistema continuará funcionando.
+        
+        // DO...WHILE
+        // Enquanto o usuário não digitar 4 o sistema continuara funcionando.
         
         do {
-            System.out.println("Bem-vindo ao Banco Ouro\n\n" + conta.getTitular() + "\t\t\tCPF: " + conta.getCpf() + "\n\n1-Consultar Saldo\n2-Depositar\n3-Sacar\n4-Sair\n\n");
+            System.out.println("Bem-vindo ao Banco Ouro\n\n" + conta.getNome() + " " + conta.getSobrenome() + "\t\t\tCPF: " + conta.getCpf() + "\n\n1-Consultar Saldo\n2-Depositar\n3-Sacar\n4-Sair\n\n");
             opcao = scanner.nextInt();
-        
-        //  O controle de fluxo switch é o menu principal de acordo com cada opção digitada uma ação será tomada.
-
+            
+            // O controle de fluxo switch é o menu principal, de acordo com cada opção digitada uma ação será tomada
             switch(opcao) {
                 case 1:
                     System.out.println("\nSeu Saldo atual é R$" + conta.getSaldo() + "\n\n");
@@ -59,20 +66,22 @@ public class GerenciaBanco {
     }
 }
 
-// CLASSE CONTA BANCARIA
+//CLASSE CONTA BANCÁRIA
 
 class ContaBancaria {
-    private String titular;
+    private String nome;
+    private String sobrenome;
     private String cpf;
     private int saldo;
     
-    public ContaBancaria(String titular, String cpf, int saldo) {
-        this.titular = titular;
+    public ContaBancaria(String nome, String sobrenome, String cpf, int saldo) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.saldo = saldo;
     }
-
-// MÉTODOS
+    
+    //MÉTODOS
     
     public void depositar (int valor) {
         saldo += valor;
@@ -90,11 +99,15 @@ class ContaBancaria {
         return saldo;
     }
     
-    public String getTitular () {
-        return titular;
+    public String getNome () {
+        return nome;
     }
     
-    public String getCpf () {
+    public String getSobrenome () {
+        return sobrenome;
+    }
+    
+        public String getCpf () {
         return cpf;
     }
      
